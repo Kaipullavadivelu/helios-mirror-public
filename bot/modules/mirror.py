@@ -221,15 +221,15 @@ class MirrorListener(listeners.MirrorListeners):
             else:
                 uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
             count = len(files)
-            msg = f'<b>Name: </b><code>{link}</code>\n\n'
-            msg += f'<b>Total Files: </b>{count}'
+             msg = f'<b>𝗡𝗮𝗺𝗲: </b><code>{link}</code>\n\n'
+            msg += f'<b>𝗧𝗼𝘁𝗮𝗹 𝗙𝗶𝗹𝗲𝘀: </b>{count}'
             if typ != 0:
-                msg += f'\n<b>Corrupted Files: </b>{typ}'
+                msg += f'\n<b>𝗖𝗼𝗿𝗿𝘂𝗽𝘁𝗲𝗱 𝗙𝗶𝗹𝗲𝘀: </b>{typ}'
             if self.message.chat.type == 'private':
                 sendMessage(msg, self.bot, self.update)
             else:
                 chat_id = str(self.message.chat.id)[4:]
-                msg += f'\n<b>Leeched By: </b>{uname}\n\n'
+                msg += f'\n<b>🙋🏻‍♂️𝗥𝗲𝗾𝘂𝗲𝘀𝘁𝗲𝗱 𝗕𝘆: </b>{uname}\n\n'
                 fmsg = ''
                 for index, item in enumerate(list(files), start=1):
                     msg_id = files[item]
@@ -251,14 +251,14 @@ class MirrorListener(listeners.MirrorListeners):
                     update_all_messages()
             return
         with download_dict_lock:
-            msg = f'<b>Name: </b><code>{download_dict[self.uid].name()}</code>\n\n<b>Size: </b>{size}'
-            msg += f'\n\n<b>Type: </b>{typ}'
+            msg = f'<b>𝗡𝗮𝗺𝗲: </b><code>{download_dict[self.uid].name()}</code>\n\n<b>Size: </b>{size}'
+            msg += f'\n\n<b>𝗧𝘆𝗽𝗲: </b>{typ}'
             if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
-                msg += f'\n<b>SubFolders: </b>{folders}'
-                msg += f'\n<b>Files: </b>{files}'
+                msg += f'\n<b>𝗦𝘂𝗯𝗙𝗼𝗹𝗱𝗲𝗿𝘀: </b>{folders}'
+                msg += f'\n<b>𝗙𝗶𝗹𝗲𝘀: </b>{files}'
             buttons = button_build.ButtonMaker()
             link = short_url(link)
-            buttons.buildbutton("☁️ Drive Link", link)
+            buttons.buildbutton("☁️ 𝗗𝗿𝗶𝘃𝗲 𝗟𝗶𝗻𝗸", link)
             LOGGER.info(f'Done Uploading {download_dict[self.uid].name()}')
             if INDEX_URL is not None:
                 url_path = requests.utils.quote(f'{download_dict[self.uid].name()}')
@@ -266,14 +266,14 @@ class MirrorListener(listeners.MirrorListeners):
                 if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                     share_url += '/'
                     share_url = short_url(share_url)
-                    buttons.buildbutton("⚡ Index Link", share_url)
+                    buttons.buildbutton("⚡ 𝗜𝗻𝗱𝗲𝘅 𝗟𝗶𝗻𝗸", share_url)
                 else:
                     share_url = short_url(share_url)
-                    buttons.buildbutton("⚡ Index Link", share_url)
+                    buttons.buildbutton("⚡ 𝗜𝗻𝗱𝗲𝘅 𝗟𝗶𝗻𝗸", share_url)
                     if VIEW_LINK:
                         share_urls = f'{INDEX_URL}/{url_path}?a=view'
                         share_urls = short_url(share_urls)
-                        buttons.buildbutton("🌐 View Link", share_urls)
+                        buttons.buildbutton("🌐 𝗩𝗶𝗲𝘄 𝗟𝗶𝗻𝗸", share_urls)
             if BUTTON_FOUR_NAME is not None and BUTTON_FOUR_URL is not None:
                 buttons.buildbutton(f"{BUTTON_FOUR_NAME}", f"{BUTTON_FOUR_URL}")
             if BUTTON_FIVE_NAME is not None and BUTTON_FIVE_URL is not None:
@@ -285,7 +285,7 @@ class MirrorListener(listeners.MirrorListeners):
             else:
                 uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
             if uname is not None:
-                msg += f'\n\n<b>Uploaded By: </b>{uname}'
+                msg += f'\n\n🙋🏻‍♂️ 𝗥𝗲𝗾𝘂𝗲𝘀𝘁𝗲𝗱 𝗕𝘆 :- {uname}\n\n<b>𝗣𝗼𝘄𝗲𝗿𝗲𝗗 𝗕𝗬: <a href="https://t.me/MSPbots">𝗠𝗦𝗣 𝗕𝗼𝘁𝘀</a></b>\n\n'
                 if LOGS_CHATS:
                     try:
                         for i in LOGS_CHATS:
